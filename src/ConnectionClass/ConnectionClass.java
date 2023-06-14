@@ -1,14 +1,4 @@
-/*
- * %W% %E% Hamza Yasin
- *
- * Copyright (c) 2017-2018 Miranz Technology. All Rights Reserved.
- *
- * This software is the confidential and proprietary information of Miranz
- * technology. You shall not disclose such Confidential Information and 
- * shall use it only in accordance with the terms of the license agreement 
- * you entered into with Miranz.
- *
- */
+
 
 package ConnectionClass;
 
@@ -19,12 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
-//import com.mysql.cj.jdbc.Driver;
-/*
- * This class is written for establishing connection between database and java code
- * @version 1.10 25 Aug 2017
- * @author Hamza Yasin
- */
+
 
 
 public class ConnectionClass {
