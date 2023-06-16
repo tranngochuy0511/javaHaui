@@ -4,6 +4,8 @@
  */
 package MainFrame;
 
+import EmployeeDisplay.Display;
+
 /**
  *
  * @author msinp
@@ -13,10 +15,17 @@ public class DashBoard extends javax.swing.JFrame {
     /**
      * Creates new form DashBoard
      */
+    Display hienthiDisplay=null;
     public DashBoard() {
         initComponents();
+        hienthiDisplay=new Display();
+        backbonePanel.add(hienthiDisplay);
+        hienthiDisplay.setVisible(true);
+        hienthiDisplay.setSize(1359,675);
     }
-
+void hidePanels(){
+    hienthiDisplay.setVisible(false);
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
