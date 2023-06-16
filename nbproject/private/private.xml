@@ -4,10 +4,14 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/JavaHaui/TheGioiDoChoi/src/MainFrame/DashBoard.java</file>
-            <file>file:/D:/JavaHaui/TheGioiDoChoi/.git/config</file>
             <file>file:/D:/JavaHaui/TheGioiDoChoi/src/ConnectionClass/ConnectionClass.java</file>
-            <file>file:/D:/JavaHaui/TheGioiDoChoi/src/thegioidochoi/login/LoginFrame.java</file>
+            <file>file:/D:/JavaHaui/TheGioiDoChoi/src/ConnectionClass/Positions.java</file>
+            <file>file:/D:/JavaHaui/TheGioiDoChoi/src/ConnectionClass/Department.java</file>
+            <file>file:/D:/JavaHaui/TheGioiDoChoi/src/EmployeeDisplay/Display.java</file>
+            <file>file:/D:/JavaHaui/TheGioiDoChoi/src/ConnectionClass/Account.java</file>
+            <file>file:/D:/JavaHaui/TheGioiDoChoi/src/ConnectionClass/Nhanvien.java</file>
             <file>file:/D:/JavaHaui/TheGioiDoChoi/src/thegioidochoi/login/LoginHandling.java</file>
+            <file>file:/D:/JavaHaui/TheGioiDoChoi/src/AddEmployee/AddEmployeeForm.java</file>
             <file>file:/D:/JavaHaui/TheGioiDoChoi/src/thegioidochoi/login/TheGioiDoChoi.java</file>
             <file>file:/D:/JavaHaui/TheGioiDoChoi/src/thegioidochoi/login/Account.java</file>
         </group>

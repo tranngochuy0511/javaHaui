@@ -35,7 +35,10 @@ public class Account implements Serializable {
 
     public Account() {
     }
-
+public Account(String str1, String str2){
+    this.username = username;
+    this.password = password;
+}
     public Account(String username) {
         this.username = username;
     }

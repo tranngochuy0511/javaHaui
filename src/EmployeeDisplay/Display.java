@@ -29,8 +29,8 @@ public class Display extends javax.swing.JPanel {
         // Tạo model cho JTable
  DefaultTableModel model = (DefaultTableModel) hienThiTable.getModel();
         // Tạo EntityManager
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("TheGioiDoChoiPU");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
+       EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("TheGioiDoChoiPU");
+      EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         try {
             entityManager.getTransaction().begin();
@@ -40,7 +40,7 @@ public class Display extends javax.swing.JPanel {
             List<Nhanvien> nhanVienList = query.getResultList();
 
             for (Nhanvien nhanVien : nhanVienList) {
-                Object[] row = {nhanVien.getId(), nhanVien.getName(), nhanVien.getDepartmentid().getName(), nhanVien.getPhone(), nhanVien.getEmail(), nhanVien.getAddress(), nhanVien.getDob().toString(), nhanVien.getGender()?"Nam":"Nữ", nhanVien.getSalary(), nhanVien.getStartDate1(), nhanVien.getPostid().getName()};
+                Object[] row = {nhanVien.getId(), nhanVien.getName(), nhanVien.getDepartmentid().getName(), nhanVien.getPhone(), nhanVien.getEmail(), nhanVien.getAddress(), nhanVien.getDob1().toString(), nhanVien.getGender()?"Nam":"Nữ", nhanVien.getSalary(), nhanVien.getStartDate1(), nhanVien.getPostid().getName()};
                 model.addRow( row);
             }
 

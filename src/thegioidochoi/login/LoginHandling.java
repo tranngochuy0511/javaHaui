@@ -4,6 +4,7 @@
  */
 package thegioidochoi.login;
 
+import ConnectionClass.Account;
 import ConnectionClass.ConnectionClass;
 import java.sql.ResultSet;
 import java.sql.SQLException;

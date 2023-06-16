@@ -124,6 +124,11 @@ public class Nhanvien implements Serializable {
     public Date getDob() {
         return dob;
     }
+    public String getDob1() {
+    SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+    String dobString = dateFormat.format(dob);
+    return dobString;
+}
 
     public void setDob(Date dob) {
         this.dob = dob;

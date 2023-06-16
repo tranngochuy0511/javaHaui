@@ -8,6 +8,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.swing.JOptionPane;
 
 
@@ -19,7 +22,8 @@ public class ConnectionClass {
     
     private static Connection connection = null;
     private static Statement statement = null;
-    
+ public static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("TheGioiDoChoiPU");
+  public static EntityManager entityManager = entityManagerFactory.createEntityManager();
     /* Creating Connection*/
     public static void connection(){
        try{
