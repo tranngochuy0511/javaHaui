@@ -7,6 +7,7 @@ package MainFrame;
 import EmployeeDisplay.Display;
 import AddEmployee.AddEmployeeForm;
 import FindEmp.FindEmployee;
+import SalarySlips.SalaryForm;
 /**
  *
  * @author msinp
@@ -19,6 +20,7 @@ public class DashBoard extends javax.swing.JFrame {
     AddEmployeeForm addEmployeeForm= null;
     Display hienthiDisplay=null;
     FindEmployee timKiemEmployee=null;
+   SalaryForm salaryForm=null;
     public DashBoard() {
         initComponents();
         hienthiDisplay=new Display();
@@ -31,6 +33,7 @@ void hidePanels(){
     timKiemEmployee.setVisible(false);
     hienthiDisplay.setVisible(false);
     addEmployeeForm.setVisible(false);
+    salaryForm.setVisible(false);
 }
 void addPanel(){
     addEmployeeForm = new AddEmployeeForm();
@@ -42,6 +45,11 @@ void addPanel(){
     timKiemEmployee.setVisible(false);
     timKiemEmployee.setSize(1395,675);
     backbonePanel.add(timKiemEmployee);
+    
+    salaryForm=new SalaryForm();
+    salaryForm.setVisible(false);
+    salaryForm.setSize(1395,675);
+    backbonePanel.add(salaryForm);
 }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -250,12 +258,16 @@ void addPanel(){
     }// </editor-fold>//GEN-END:initComponents
 
     private void searchEmployeeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchEmployeeButtonActionPerformed
+        Display.reset();
         hidePanels();
         timKiemEmployee.setVisible(true);
     }//GEN-LAST:event_searchEmployeeButtonActionPerformed
 
     private void salarySlipsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salarySlipsButtonActionPerformed
-        
+   Display.reset();
+        hidePanels();
+    Display.salaryForm=true;
+    salaryForm.setVisible(true);
 
     }//GEN-LAST:event_salarySlipsButtonActionPerformed
 

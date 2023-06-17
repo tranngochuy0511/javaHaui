@@ -6,12 +6,15 @@ package EmployeeDisplay;
 
 import static ConnectionClass.ConnectionClass.entityManager;
 import ConnectionClass.Nhanvien;
+import SalarySlips.ExportForm;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.swing.JTextField;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -31,8 +34,9 @@ public class Display extends javax.swing.JPanel {
     public Display() {
         initComponents();
         displayNhanvienData();
+        setupTableSelectionListener();
     }
-    public void reset(){
+   static public void reset(){
         updateForm=false;
         findForm=false;
         salaryForm=false;
@@ -76,9 +80,28 @@ private void updateTableData(List<Nhanvien> nhanVienList) {
         });
     }
 }
-void salarySlipChoose(){
-    
+private void setupTableSelectionListener() {
+    hienThiTable.getSelectionModel().addListSelectionListener((ListSelectionEvent e) -> {
+        if (!e.getValueIsAdjusting()) {
+            int selectedRow = hienThiTable.getSelectedRow();
+            if (selectedRow != -1) {
+                Object selectedValue = hienThiTable.getValueAt(selectedRow, 0);
+                openAnotherForm(selectedValue.toString());
+            }
+        }
+    });
 }
+
+
+private void openAnotherForm(String data) {
+    if(salaryForm){
+    // Thực hiện xử lý dữ liệu và mở form khác
+    ExportForm form = new ExportForm(data);
+    form.setVisible(true);
+}
+}
+
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -139,7 +162,7 @@ void salarySlipChoose(){
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JTable hienThiTable;
-    private javax.swing.JLabel jLabel1;
+    public javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

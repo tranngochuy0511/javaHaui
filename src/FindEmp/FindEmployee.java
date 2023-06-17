@@ -24,13 +24,14 @@ public class FindEmployee extends javax.swing.JPanel {
     /**
      * Creates new form FindEmployee
      */
-   Display dpDisplay=null;
+  public Display dpDisplay=null;
     public FindEmployee() {
         initComponents();
        // searchEmployees();
        dpDisplay = new Display();
        dpDisplay.setSize(1395,675);
        backpanel.add(dpDisplay);
+      
     }
    
 
