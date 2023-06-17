@@ -4,12 +4,14 @@
  */
 package EmployeeDisplay;
 
+import static ConnectionClass.ConnectionClass.entityManager;
 import ConnectionClass.Nhanvien;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -22,46 +24,61 @@ public class Display extends javax.swing.JPanel {
     /**
      * Creates new form Display
      */
-    boolean updateForm=false;
+   public static boolean updateForm=false;
+   public static boolean findForm=false;
+      public static boolean salaryForm=false;
+
     public Display() {
         initComponents();
-       
-        displayNhanvienData("SELECT n FROM Nhanvien n ");
+        displayNhanvienData();
     }
-     public Display(String n) {
-        initComponents();
-        displayNhanvienData(n);
+    public void reset(){
+        updateForm=false;
+        findForm=false;
+        salaryForm=false;
     }
-  public void displayNhanvienData(String quer) {
+  public void displayNhanvienData() {
         // Tạo model cho JTable
- DefaultTableModel model = (DefaultTableModel) hienThiTable.getModel();
+ 
+ Query query=entityManager.createQuery("SELECT n FROM Nhanvien n");
+ List<Nhanvien> nhanVienList = query.getResultList();
         // Tạo EntityManager
-      EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("TheGioiDoChoiPU");
-     EntityManager entityManager = entityManagerFactory.createEntityManager();
-
-        try {
-            entityManager.getTransaction().begin();
-
-            // Lấy dữ liệu từ cơ sở dữ liệu
-            Query query = entityManager.createQuery(quer);
-            List<Nhanvien> nhanVienList = query.getResultList();
-
-            for (Nhanvien nhanVien : nhanVienList) {
-                Object[] row = {nhanVien.getId(), nhanVien.getName(), nhanVien.getDepartmentid().getName(), nhanVien.getPhone(), nhanVien.getEmail(), nhanVien.getAddress(), nhanVien.getDob1().toString(), nhanVien.getGender()?"Nam":"Nữ", nhanVien.getSalary(), nhanVien.getStartDate1(), nhanVien.getPostid().getName()};
-                model.addRow( row);
-            }
-
-            entityManager.getTransaction().commit();
-        } catch (Exception ex) {
-            entityManager.getTransaction().rollback();
-            ex.printStackTrace();
-        } finally {
-            entityManager.close();
-            entityManagerFactory.close();
-        }
-        hienThiTable.setModel(model);
+      updateTableData(nhanVienList);
         // Đặt model cho JTable
     }
+  public void searchEmployees(JTextField searchField) {
+    String searchKeyword = searchField.getText().trim();
+    Query query = entityManager.createQuery("SELECT n FROM Nhanvien n WHERE n.name LIKE :keyword");
+    query.setParameter("keyword", "%" + searchKeyword + "%");
+    List<Nhanvien> nhanVienList = query.getResultList();
+    updateTableData(nhanVienList);
+}
+
+private void updateTableData(List<Nhanvien> nhanVienList) {
+    DefaultTableModel model = (DefaultTableModel) hienThiTable.getModel();
+    model.setRowCount(0); // Xóa toàn bộ dữ liệu hiện tại trên bảng
+    
+    for (Nhanvien nhanVien : nhanVienList) {
+        // Thêm dữ liệu của nhân viên vào bảng
+        model.addRow(new Object[]{
+            nhanVien.getId(),
+            nhanVien.getName(),
+            nhanVien.getDepartmentid().getName(),
+            nhanVien.getPhone(),
+            nhanVien.getEmail(),
+            nhanVien.getAddress(),
+            nhanVien.getDob1(),
+            nhanVien.getGender()?"Nam":"Nữ",
+            nhanVien.getSalary(),
+            nhanVien.getStartDate1(),
+            nhanVien.getPostid().getName()
+            // Các cột khác tương ứng với dữ liệu cần hiển thị
+        });
+    }
+}
+void salarySlipChoose(){
+    
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

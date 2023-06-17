@@ -24,61 +24,35 @@ public class FindEmployee extends javax.swing.JPanel {
     /**
      * Creates new form FindEmployee
      */
-   
+   Display dpDisplay=null;
     public FindEmployee() {
         initComponents();
-        searchEmployees();
+       // searchEmployees();
+       dpDisplay = new Display();
+       dpDisplay.setSize(1395,675);
+       backpanel.add(dpDisplay);
     }
    
 
 private void setupSearchField() {
     searchField.getDocument().addDocumentListener(new DocumentListener() {
+        private JTextField searchField=this.searchField;
         @Override
         public void insertUpdate(DocumentEvent e) {
-            searchEmployees();
+            dpDisplay.searchEmployees(this.searchField);
         }
         @Override
         public void removeUpdate(DocumentEvent e) {
-            searchEmployees();
+         dpDisplay.searchEmployees(this.searchField);
         }
         @Override
         public void changedUpdate(DocumentEvent e) {
-            searchEmployees();
+          dpDisplay.searchEmployees(this.searchField);
         }
     });
 }
 
-private void searchEmployees() {
-    String searchKeyword = searchField.getText().trim();
-    
-    Query query = entityManager.createQuery("SELECT n FROM Nhanvien n WHERE n.name LIKE :keyword");
-    query.setParameter("keyword", "%" + searchKeyword + "%");
-    List<Nhanvien> nhanVienList = query.getResultList();
-    updateTableData(nhanVienList);
-}
 
-private void updateTableData(List<Nhanvien> nhanVienList) {
-    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-    model.setRowCount(0); // Xóa toàn bộ dữ liệu hiện tại trên bảng
-    
-    for (Nhanvien nhanVien : nhanVienList) {
-        // Thêm dữ liệu của nhân viên vào bảng
-        model.addRow(new Object[]{
-            nhanVien.getId(),
-            nhanVien.getName(),
-            nhanVien.getDepartmentid().getName(),
-            nhanVien.getPhone(),
-            nhanVien.getEmail(),
-            nhanVien.getAddress(),
-            nhanVien.getDob1(),
-            nhanVien.getGender()?"Nam":"Nữ",
-            nhanVien.getSalary(),
-            nhanVien.getStartDate1(),
-            nhanVien.getPostid().getName()
-            // Các cột khác tương ứng với dữ liệu cần hiển thị
-        });
-    }
-}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -91,8 +65,7 @@ private void updateTableData(List<Nhanvien> nhanVienList) {
 
         jLabel1 = new javax.swing.JLabel();
         searchField = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        backpanel = new javax.swing.JPanel();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Tìm kiếm");
@@ -108,26 +81,16 @@ private void updateTableData(List<Nhanvien> nhanVienList) {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "ID", "Tên", "Phòng ban", "Số điện thoại", "Email", "Address", "Ngày sinh", "Giới tính", "Lương", "Ngày bắt đầu", "Vị trí"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(jTable1);
+        javax.swing.GroupLayout backpanelLayout = new javax.swing.GroupLayout(backpanel);
+        backpanel.setLayout(backpanelLayout);
+        backpanelLayout.setHorizontalGroup(
+            backpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 839, Short.MAX_VALUE)
+        );
+        backpanelLayout.setVerticalGroup(
+            backpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 349, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -140,10 +103,9 @@ private void updateTableData(List<Nhanvien> nhanVienList) {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 889, Short.MAX_VALUE)))
+                    .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(backpanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,9 +114,9 @@ private void updateTableData(List<Nhanvien> nhanVienList) {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(27, 27, 27)
+                .addComponent(backpanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(63, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -164,14 +126,13 @@ private void updateTableData(List<Nhanvien> nhanVienList) {
     }//GEN-LAST:event_searchFieldActionPerformed
 
     private void searchFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchFieldKeyReleased
-       searchEmployees(); // TODO add your handling code here:
+       dpDisplay.searchEmployees(this.searchField); // TODO add your handling code here:
     }//GEN-LAST:event_searchFieldKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel backpanel;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField searchField;
     // End of variables declaration//GEN-END:variables
 }

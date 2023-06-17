@@ -56,7 +56,6 @@ void addPanel(){
         usernameLabel = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         searchEmployeeButton = new javax.swing.JButton();
-        workButton = new javax.swing.JButton();
         salarySlipsButton = new javax.swing.JButton();
         updateButton = new javax.swing.JButton();
         goBackButton = new javax.swing.JButton();
@@ -82,15 +81,6 @@ void addPanel(){
         searchEmployeeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchEmployeeButtonActionPerformed(evt);
-            }
-        });
-
-        workButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        workButton.setText("Công việc hàng ngày");
-        workButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        workButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                workButtonActionPerformed(evt);
             }
         });
 
@@ -161,7 +151,6 @@ void addPanel(){
                     .addComponent(newEmployeeButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(goBackButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(salarySlipsButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(workButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(searchEmployeeButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(newEmployeeButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(26, Short.MAX_VALUE))
@@ -176,8 +165,6 @@ void addPanel(){
                 .addGap(21, 21, 21)
                 .addComponent(searchEmployeeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(workButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
                 .addComponent(salarySlipsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -185,7 +172,7 @@ void addPanel(){
                 .addComponent(LoginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(goBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(146, Short.MAX_VALUE))
+                .addContainerGap(220, Short.MAX_VALUE))
         );
 
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
@@ -267,10 +254,6 @@ void addPanel(){
         timKiemEmployee.setVisible(true);
     }//GEN-LAST:event_searchEmployeeButtonActionPerformed
 
-    private void workButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_workButtonActionPerformed
-     
-    }//GEN-LAST:event_workButtonActionPerformed
-
     private void salarySlipsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salarySlipsButtonActionPerformed
         
 
@@ -348,6 +331,5 @@ hienthiDisplay.setVisible(true);// TODO add your handling code here:
     private javax.swing.JButton searchEmployeeButton;
     private javax.swing.JButton updateButton;
     private javax.swing.JLabel usernameLabel;
-    private javax.swing.JButton workButton;
     // End of variables declaration//GEN-END:variables
 }
