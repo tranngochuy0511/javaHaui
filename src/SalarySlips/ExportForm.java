@@ -4,6 +4,16 @@
  */
 package SalarySlips;
 
+import ConnectionClass.ConnectionClass;
+import static ConnectionClass.ConnectionClass.entityManager;
+import ConnectionClass.Nhanvien;
+import java.sql.PreparedStatement;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
+import javax.persistence.Query;
+import java.sql.Timestamp;
+import javax.swing.JOptionPane;
 /**
  *
  * @author msinp
@@ -13,12 +23,43 @@ public class ExportForm extends javax.swing.JFrame {
     /**
      * Creates new form ExportForm
      */
+    double advance;
+    double deduction;
+    double grosssalary;
+    Nhanvien tempNhanvien=null;
     public ExportForm() {
         initComponents();
     }
      public ExportForm(String data) {
+         tempNhanvien= pushData(data);
         initComponents();
+        IDLabel.setText(tempNhanvien.getId().toString());
+        nameLabel.setText(tempNhanvien.getName());
+        
     }
+     Nhanvien pushData(String data){
+        int number = Integer.valueOf(data);
+        Query query = entityManager.createQuery("SELECT n FROM Nhanvien n WHERE n.id= :data");
+        query.setParameter("data",number);
+         Nhanvien nhanVien= (Nhanvien) query.getSingleResult();
+         return nhanVien;
+     }
+     
+     public void tinhToan(){
+         double salary = tempNhanvien.getSalary();
+         
+         LocalDate startDate = startDateChooser.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate endDate = endDateChooser.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+ advance=Double.valueOf(advanceField.getText());
+ deduction=Double.valueOf(deductionField.getText());
+// Tính toán số ngày giữa hai ngày
+long daysBetween = ChronoUnit.DAYS.between(startDate, endDate);
+     grosssalary=salary/30*daysBetween+advance-deduction;
+    startDateLabel.setText(startDateChooser.getDate().toString());    endDateLabel.setText(endDateChooser.getDate().toString());
+advanceLabel.setText(advanceField.getText());
+deductionLabel.setText(deductionField.getText());
+grossSalaryLabel.setText(String.valueOf(grosssalary));
+     }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -30,30 +71,258 @@ public class ExportForm extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        startDateChooser = new com.toedter.calendar.JDateChooser();
+        endDateChooser = new com.toedter.calendar.JDateChooser();
+        jSeparator1 = new javax.swing.JSeparator();
+        advanceField = new javax.swing.JTextField();
+        deductionField = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        IDLabel = new javax.swing.JLabel();
+        nameLabel = new javax.swing.JLabel();
+        startDateLabel = new javax.swing.JLabel();
+        endDateLabel = new javax.swing.JLabel();
+        advanceLabel = new javax.swing.JLabel();
+        deductionLabel = new javax.swing.JLabel();
+        grossSalaryLabel = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("jLabel1");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setText("Phiếu lương");
+
+        jLabel2.setText("Ngày bắt đầu");
+
+        jLabel3.setText("Ngày kết thúc");
+
+        jLabel4.setText("Thưởng");
+
+        jLabel5.setText("Phạt");
+
+        jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
+        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        advanceField.setText("jTextField1");
+        advanceField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                advanceFieldActionPerformed(evt);
+            }
+        });
+
+        deductionField.setText("jTextField2");
+        deductionField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deductionFieldActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Xuất");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("ID");
+
+        jLabel7.setText("Tên");
+
+        jLabel8.setText("Thưởng");
+
+        jLabel9.setText("Phạt");
+
+        jLabel10.setText("Ngày kết thúc");
+
+        jLabel11.setText("Ngày bắt đầu");
+
+        jLabel12.setText("Tổng nhận");
+
+        IDLabel.setText("jLabel13");
+
+        nameLabel.setText("jLabel13");
+
+        jButton2.setText("Lưu");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(274, 274, 274)
+                .addGap(283, 283, 283)
                 .addComponent(jLabel1)
-                .addContainerGap(322, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addComponent(startDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(deductionField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(advanceField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(endDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(58, 58, 58)
+                        .addComponent(jButton1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel12))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 160, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(IDLabel)
+                            .addComponent(nameLabel)
+                            .addComponent(startDateLabel)
+                            .addComponent(endDateLabel)
+                            .addComponent(advanceLabel)
+                            .addComponent(deductionLabel)
+                            .addComponent(grossSalaryLabel)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2)
+                        .addGap(43, 43, 43)))
+                .addGap(79, 79, 79))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addContainerGap(451, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(86, 86, 86)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(startDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(21, 21, 21)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(endDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(17, 17, 17)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(advanceField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(32, 32, 32)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(deductionField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(43, 43, 43)
+                        .addComponent(jButton1)
+                        .addGap(0, 129, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel6)
+                                    .addComponent(IDLabel))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel7)
+                                    .addComponent(nameLabel))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel11)
+                                    .addComponent(startDateLabel))
+                                .addGap(21, 21, 21)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel10)
+                                    .addComponent(endDateLabel))
+                                .addGap(17, 17, 17)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel8)
+                                    .addComponent(advanceLabel))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel9)
+                                    .addComponent(deductionLabel))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel12)
+                                    .addComponent(grossSalaryLabel))
+                                .addGap(59, 59, 59)
+                                .addComponent(jButton2)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jSeparator1))))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+tinhToan();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void deductionFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deductionFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deductionFieldActionPerformed
+
+    private void advanceFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_advanceFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_advanceFieldActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    try {
+    entityManager.getTransaction().begin();
+
+    Query query = entityManager.createNativeQuery("INSERT INTO salaryslips values(?,?,?,?,?,?,?,?)");
+    query.setParameter(1, startDateChooser.getDate());
+    query.setParameter(2, endDateChooser.getDate());
+    query.setParameter(3, advance);
+    query.setParameter(4, deduction);
+    query.setParameter(5, grosssalary);
+    query.setParameter(6, tempNhanvien.getName());
+    query.setParameter(7, new Timestamp(System.currentTimeMillis()));
+    query.setParameter(8, tempNhanvien.getId());
+    int rowsAffected = query.executeUpdate();
+
+    entityManager.getTransaction().commit();
+
+    JOptionPane.showMessageDialog(null, "Thao tác thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+} catch (Exception ex) {
+    if (entityManager.getTransaction().isActive()) {
+        entityManager.getTransaction().rollback();
+    }
+    JOptionPane.showMessageDialog(null, "Đã xảy ra lỗi!", "Thông báo", JOptionPane.ERROR_MESSAGE);
+    ex.printStackTrace();
+}    // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -91,6 +360,31 @@ public class ExportForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel IDLabel;
+    private javax.swing.JTextField advanceField;
+    private javax.swing.JLabel advanceLabel;
+    private javax.swing.JTextField deductionField;
+    private javax.swing.JLabel deductionLabel;
+    private com.toedter.calendar.JDateChooser endDateChooser;
+    private javax.swing.JLabel endDateLabel;
+    private javax.swing.JLabel grossSalaryLabel;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel nameLabel;
+    private com.toedter.calendar.JDateChooser startDateChooser;
+    private javax.swing.JLabel startDateLabel;
     // End of variables declaration//GEN-END:variables
 }

@@ -35,24 +35,6 @@ public class FindEmployee extends javax.swing.JPanel {
     }
    
 
-private void setupSearchField() {
-    searchField.getDocument().addDocumentListener(new DocumentListener() {
-        private JTextField searchField=this.searchField;
-        @Override
-        public void insertUpdate(DocumentEvent e) {
-            dpDisplay.searchEmployees(this.searchField);
-        }
-        @Override
-        public void removeUpdate(DocumentEvent e) {
-         dpDisplay.searchEmployees(this.searchField);
-        }
-        @Override
-        public void changedUpdate(DocumentEvent e) {
-          dpDisplay.searchEmployees(this.searchField);
-        }
-    });
-}
-
 
 
     /**
