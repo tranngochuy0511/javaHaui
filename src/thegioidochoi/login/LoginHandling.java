@@ -3,8 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package thegioidochoi.login;
-
-import ConnectionClass.Account;
 import ConnectionClass.ConnectionClass;
 import java.sql.ResultSet;
 import java.sql.SQLException;
