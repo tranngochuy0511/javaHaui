@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package EmployeeDisplay;
+
 import ConnectionClass.Nhanvien;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -21,22 +22,28 @@ public class Display extends javax.swing.JPanel {
     /**
      * Creates new form Display
      */
+    boolean updateForm=false;
     public Display() {
         initComponents();
-        displayNhanvienData();
+       
+        displayNhanvienData("SELECT n FROM Nhanvien n ");
     }
-  private void displayNhanvienData() {
+     public Display(String n) {
+        initComponents();
+        displayNhanvienData(n);
+    }
+  public void displayNhanvienData(String quer) {
         // Tạo model cho JTable
  DefaultTableModel model = (DefaultTableModel) hienThiTable.getModel();
         // Tạo EntityManager
-       EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("TheGioiDoChoiPU");
-      EntityManager entityManager = entityManagerFactory.createEntityManager();
+      EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("TheGioiDoChoiPU");
+     EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         try {
             entityManager.getTransaction().begin();
 
             // Lấy dữ liệu từ cơ sở dữ liệu
-            Query query = entityManager.createQuery("SELECT n FROM Nhanvien n");
+            Query query = entityManager.createQuery(quer);
             List<Nhanvien> nhanVienList = query.getResultList();
 
             for (Nhanvien nhanVien : nhanVienList) {
@@ -114,7 +121,7 @@ public class Display extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable hienThiTable;
+    public javax.swing.JTable hienThiTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

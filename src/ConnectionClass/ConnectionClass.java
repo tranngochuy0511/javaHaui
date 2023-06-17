@@ -22,8 +22,8 @@ public class ConnectionClass {
     
     private static Connection connection = null;
     private static Statement statement = null;
- public static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("TheGioiDoChoiPU");
-  public static EntityManager entityManager = entityManagerFactory.createEntityManager();
+     public static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("TheGioiDoChoiPU");
+    public static EntityManager entityManager = entityManagerFactory.createEntityManager();
     /* Creating Connection*/
     public static void connection(){
        try{

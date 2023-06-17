@@ -6,6 +6,7 @@ package MainFrame;
 
 import EmployeeDisplay.Display;
 import AddEmployee.AddEmployeeForm;
+import FindEmp.FindEmployee;
 /**
  *
  * @author msinp
@@ -17,6 +18,7 @@ public class DashBoard extends javax.swing.JFrame {
      */
     AddEmployeeForm addEmployeeForm= null;
     Display hienthiDisplay=null;
+    FindEmployee timKiemEmployee=null;
     public DashBoard() {
         initComponents();
         hienthiDisplay=new Display();
@@ -26,6 +28,7 @@ public class DashBoard extends javax.swing.JFrame {
         addPanel();
     }
 void hidePanels(){
+    timKiemEmployee.setVisible(false);
     hienthiDisplay.setVisible(false);
     addEmployeeForm.setVisible(false);
 }
@@ -34,6 +37,11 @@ void addPanel(){
     addEmployeeForm.setVisible(false);
     addEmployeeForm.setSize(1395,675);
     backbonePanel.add(addEmployeeForm);
+    
+    timKiemEmployee= new FindEmployee();
+    timKiemEmployee.setVisible(false);
+    timKiemEmployee.setSize(1395,675);
+    backbonePanel.add(timKiemEmployee);
 }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -255,7 +263,8 @@ void addPanel(){
     }// </editor-fold>//GEN-END:initComponents
 
     private void searchEmployeeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchEmployeeButtonActionPerformed
-      
+        hidePanels();
+        timKiemEmployee.setVisible(true);
     }//GEN-LAST:event_searchEmployeeButtonActionPerformed
 
     private void workButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_workButtonActionPerformed
