@@ -31,7 +31,7 @@ public class Account implements Serializable {
     @Column(name = "username")
     private String username;
     @Column(name = "password")
-    private String password;
+    private char [] password;
 
     public Account() {
     }
@@ -51,11 +51,12 @@ public Account(String str1, String str2){
         this.username = username;
     }
 
-    public String getPassword() {
+    public char[] getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    public void setPassword(char [] password) {
+        
         this.password = password;
     }
 
