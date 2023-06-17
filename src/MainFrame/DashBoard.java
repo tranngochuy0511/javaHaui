@@ -9,6 +9,7 @@ import EmployeeDisplay.Display;
 import AddEmployee.AddEmployeeForm;
 import FindEmp.FindEmployee;
 import SalarySlips.SalaryForm;
+import thegioidochoi.login.LoginFrame;
 /**
  *
  * @author msinp
@@ -284,7 +285,8 @@ void addPanel(){
     }//GEN-LAST:event_updateButtonActionPerformed
 
     private void goBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goBackButtonActionPerformed
-        
+this.dispose();
+new LoginFrame().setVisible(true);
     }//GEN-LAST:event_goBackButtonActionPerformed
 
     private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed

@@ -4,15 +4,21 @@
  */
 package thegioidochoi.login;
 import ConnectionClass.ConnectionClass;
+import static ConnectionClass.ConnectionClass.entityManager;
+import ConnectionClass.Nhanvien;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 /**
  *
  * @author msinp
  */
 public class LoginHandling {
+    
     private static ArrayList<Account> accounts = new ArrayList();
     /* Loading the data from database*/   
    public static boolean load()
