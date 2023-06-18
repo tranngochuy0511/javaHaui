@@ -114,14 +114,12 @@ grossSalaryLabel.setText(String.valueOf(grosssalary));
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        advanceField.setText("jTextField1");
         advanceField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 advanceFieldActionPerformed(evt);
             }
         });
 
-        deductionField.setText("jTextField2");
         deductionField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deductionFieldActionPerformed(evt);

@@ -43,7 +43,7 @@ public class Display extends javax.swing.JPanel {
     }
   public void displayNhanvienData() {
         // Tạo model cho JTable
- 
+
  Query query=entityManager.createQuery("SELECT n FROM Nhanvien n");
  List<Nhanvien> nhanVienList = query.getResultList();
         // Tạo EntityManager
@@ -60,6 +60,7 @@ public class Display extends javax.swing.JPanel {
 
 private void updateTableData(List<Nhanvien> nhanVienList) {
     DefaultTableModel model = (DefaultTableModel) hienThiTable.getModel();
+
     model.setRowCount(0); // Xóa toàn bộ dữ liệu hiện tại trên bảng
     
     for (Nhanvien nhanVien : nhanVienList) {

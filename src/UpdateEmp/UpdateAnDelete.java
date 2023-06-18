@@ -77,7 +77,7 @@ public void deleteNhanVienById( int id) {
         );
         backPanelLayout.setVerticalGroup(
             backPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 363, Short.MAX_VALUE)
+            .addGap(0, 468, Short.MAX_VALUE)
         );
 
         updateButton.setText("Sửa");
@@ -106,7 +106,7 @@ public void deleteNhanVienById( int id) {
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(updateButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 455, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 614, Short.MAX_VALUE)
                         .addComponent(deleteButton)
                         .addGap(65, 65, 65))))
         );

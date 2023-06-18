@@ -40,6 +40,7 @@ public class LoginFrame extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocation(new java.awt.Point(612, 317));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
