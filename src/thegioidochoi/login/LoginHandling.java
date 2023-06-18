@@ -19,7 +19,7 @@ import javax.persistence.TypedQuery;
  */
 public class LoginHandling {
     
-    private static ArrayList<Account> accounts = new ArrayList();
+    public static ArrayList<Account> accounts = new ArrayList();
     /* Loading the data from database*/   
    public static boolean load()
    {

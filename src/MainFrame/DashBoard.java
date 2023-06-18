@@ -302,6 +302,7 @@ addEmployeeForm.setVisible(true);
 
     private void newEmployeeButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newEmployeeButton1ActionPerformed
 hidePanels();    
+hienthiDisplay.displayNhanvienData();
 hienthiDisplay.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_newEmployeeButton1ActionPerformed
 

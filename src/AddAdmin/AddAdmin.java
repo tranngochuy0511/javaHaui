@@ -12,7 +12,9 @@ package AddAdmin;
 import ConnectionClass.Account;
 import ConnectionClass.ConnectionClass;
 import static ConnectionClass.ConnectionClass.entityManager;
+import java.util.Arrays;
 import javax.swing.JOptionPane;
+import thegioidochoi.login.LoginHandling;
 
 public class AddAdmin extends javax.swing.JPanel {
 
@@ -29,6 +31,7 @@ public class AddAdmin extends javax.swing.JPanel {
         entityManager.getTransaction().begin();
         entityManager.persist(acc());
         entityManager.getTransaction().commit();
+         LoginHandling.accounts.add(new thegioidochoi.login.Account(sAccount.getUsername(),Arrays.toString(sAccount.getPassword())));
         JOptionPane.showMessageDialog(null, "Thao tác thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
     }
     }
