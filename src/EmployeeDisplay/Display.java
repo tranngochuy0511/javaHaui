@@ -29,7 +29,7 @@ public class Display extends javax.swing.JPanel {
      */
    public static boolean updateForm=false;
    public static boolean findForm=false;
-      public static boolean salaryForm=false;
+    public static boolean salaryForm=false;
 
     public Display() {
         initComponents();
@@ -80,12 +80,18 @@ private void updateTableData(List<Nhanvien> nhanVienList) {
         });
     }
 }
+public Nhanvien selectedNhanvien=null;
 private void setupTableSelectionListener() {
     hienThiTable.getSelectionModel().addListSelectionListener((ListSelectionEvent e) -> {
         if (!e.getValueIsAdjusting()) {
             int selectedRow = hienThiTable.getSelectedRow();
             if (selectedRow != -1) {
                 Object selectedValue = hienThiTable.getValueAt(selectedRow, 0);
+                Query query=entityManager.createQuery("SELECT n FROM Nhanvien n WHERE n.id= :id");
+                query.setParameter("id", (int) selectedValue);
+                Nhanvien nvList= (Nhanvien) query.getSingleResult();
+                this.selectedNhanvien=nvList;
+                //System.err.println(selectedNhanvien.getId());
                 openAnotherForm(selectedValue.toString());
             }
         }

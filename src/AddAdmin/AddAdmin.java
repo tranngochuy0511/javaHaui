@@ -25,13 +25,13 @@ public class AddAdmin extends javax.swing.JPanel {
         initComponents();
     }
     public void insert(){
-        
         Account sAccount=acc();
         if(sAccount!=null){
         entityManager.getTransaction().begin();
         entityManager.persist(acc());
         entityManager.getTransaction().commit();
-         LoginHandling.accounts.add(new thegioidochoi.login.Account(sAccount.getUsername(),Arrays.toString(sAccount.getPassword())));
+        // LoginHandling.accounts.add(new thegioidochoi.login.Account(sAccount.getUsername(),Arrays.toString(sAccount.getPassword())));
+        LoginHandling.load();
         JOptionPane.showMessageDialog(null, "Thao tác thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
     }
     }

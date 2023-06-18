@@ -19,13 +19,12 @@ import javax.persistence.TypedQuery;
  */
 public class LoginHandling {
     
-    public static ArrayList<Account> accounts = new ArrayList();
+    public static ArrayList<Account> accounts = null;
     /* Loading the data from database*/   
    public static boolean load()
    {
-       if (!accounts.isEmpty())
-            return false;
-        
+        accounts=null;
+        accounts=new ArrayList();
         ResultSet resultSet = ConnectionClass.selectQuery("SELECT * FROM account;");
         
         if(resultSet == null)
