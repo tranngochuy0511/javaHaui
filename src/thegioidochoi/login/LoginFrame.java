@@ -166,7 +166,7 @@ public class LoginFrame extends javax.swing.JFrame {
         {         
              new DashBoard().setVisible(true);
             this.dispose();
-            System.out.println("thegioidochoi.login.LoginFrame.access()");
+            System.out.println("Hi");
         }
         else 
            JOptionPane.showMessageDialog(null, "Invalid Username or Password");
