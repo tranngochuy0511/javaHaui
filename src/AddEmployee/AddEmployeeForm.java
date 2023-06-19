@@ -118,14 +118,14 @@ List<String> departmentList= query1.getResultList();
         browseButton = new javax.swing.JButton();
         pictureLabel = new javax.swing.JLabel();
         departmentComboBox1 = new javax.swing.JComboBox<>();
-        startdateDateChooser = new com.toedter.calendar.JDateChooser();
-        dobDateChooser = new com.toedter.calendar.JDateChooser();
         postComboBox = new javax.swing.JComboBox<>();
         maleRadioButton = new javax.swing.JRadioButton();
         femaleRadioButton = new javax.swing.JRadioButton();
         SaveButton = new javax.swing.JButton();
         emailLabel = new javax.swing.JLabel();
         emailField = new javax.swing.JTextField();
+        dobDateChooser = new com.toedter.calendar.JDateChooser();
+        startdateDateChooser = new com.toedter.calendar.JDateChooser();
 
         themLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         themLabel.setText("Thêm");
@@ -160,7 +160,6 @@ List<String> departmentList= query1.getResultList();
             }
         });
 
-        pictureLabel.setIcon(new javax.swing.ImageIcon("C:\\Users\\msinp\\Downloads\\HR-Management-System-in-Java-using-swing-framework\\src\\gamemarkstudio\\images\\blank-profile-head-hi.png")); // NOI18N
         pictureLabel.setText("jLabel2");
 
         departmentComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -225,7 +224,6 @@ List<String> departmentList= query1.getResultList();
                                             .addComponent(departmentLabel)
                                             .addGap(98, 98, 98)
                                             .addComponent(departmentComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addComponent(dobLabel)
                                         .addComponent(salaryLabel)
                                         .addComponent(addressLabel)
                                         .addGroup(layout.createSequentialGroup()
@@ -233,20 +231,24 @@ List<String> departmentList= query1.getResultList();
                                                 .addComponent(phoneLabel)
                                                 .addComponent(startdateLabel)
                                                 .addComponent(positionLabel)
-                                                .addComponent(genderLabel))
-                                            .addGap(38, 38, 38)
+                                                .addComponent(genderLabel)
+                                                .addComponent(dobLabel))
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addComponent(startdateDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(phoneField, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                                                    .addComponent(addressField)
-                                                    .addComponent(salaryField)
-                                                    .addComponent(dobDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(postComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                                 .addGroup(layout.createSequentialGroup()
-                                                    .addComponent(maleRadioButton)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(femaleRadioButton)))))
+                                                    .addGap(38, 38, 38)
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addComponent(phoneField, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                                                        .addComponent(addressField)
+                                                        .addComponent(salaryField)
+                                                        .addComponent(postComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addGroup(layout.createSequentialGroup()
+                                                            .addComponent(maleRadioButton)
+                                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                            .addComponent(femaleRadioButton))
+                                                        .addComponent(dobDateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addGap(29, 29, 29)
+                                                    .addComponent(startdateDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel1)
                                         .addGap(194, 194, 194)
@@ -306,14 +308,13 @@ List<String> departmentList= query1.getResultList();
                                 .addComponent(maleRadioButton)
                                 .addComponent(femaleRadioButton)))
                         .addGap(12, 12, 12)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(salaryLabel)
-                                    .addComponent(salaryField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(startdateLabel))
-                            .addComponent(startdateDateChooser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(salaryLabel)
+                            .addComponent(salaryField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(startdateLabel)
+                            .addComponent(startdateDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(positionLabel)
@@ -324,7 +325,7 @@ List<String> departmentList= query1.getResultList();
                         .addComponent(pictureLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(browseButton)))
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 byte[] imageBytes;

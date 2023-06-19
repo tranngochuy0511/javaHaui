@@ -26,28 +26,37 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="224" max="-2" attributes="0"/>
+              <Component id="SaveButton" min="-2" pref="138" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
               <EmptySpace pref="210" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="emailField" alignment="0" pref="160" max="32767" attributes="0"/>
-                      <Component id="nameField" alignment="0" pref="160" max="32767" attributes="0"/>
-                      <Component id="departmentComboBox1" alignment="0" max="32767" attributes="0"/>
-                      <Component id="phoneField" alignment="0" max="32767" attributes="0"/>
-                      <Component id="addressField" alignment="0" max="32767" attributes="0"/>
-                      <Component id="salaryField" alignment="0" max="32767" attributes="0"/>
-                      <Component id="postComboBox" alignment="0" pref="160" max="32767" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="maleRadioButton" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="femaleRadioButton" min="-2" max="-2" attributes="0"/>
-                      </Group>
+              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                  <Component id="startdateDateChooser" pref="160" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
                       <Component id="dobDateChooser" alignment="0" max="32767" attributes="0"/>
-                      <Component id="startdateDateChooser" alignment="0" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="49" pref="49" max="-2" attributes="0"/>
-                      <Component id="IDLabel" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="emailField" alignment="0" pref="160" max="32767" attributes="0"/>
+                              <Component id="nameField" alignment="0" pref="160" max="32767" attributes="0"/>
+                              <Component id="departmentComboBox1" alignment="0" max="32767" attributes="0"/>
+                              <Component id="phoneField" alignment="0" max="32767" attributes="0"/>
+                              <Component id="addressField" alignment="0" max="32767" attributes="0"/>
+                              <Component id="salaryField" alignment="0" max="32767" attributes="0"/>
+                              <Component id="postComboBox" alignment="0" pref="160" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="maleRadioButton" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="femaleRadioButton" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="49" pref="49" max="-2" attributes="0"/>
+                              <Component id="IDLabel" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="106" max="-2" attributes="0"/>
@@ -61,11 +70,6 @@
                       <EmptySpace min="-2" pref="254" max="-2" attributes="0"/>
                   </Group>
               </Group>
-          </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="224" max="-2" attributes="0"/>
-              <Component id="SaveButton" min="-2" pref="138" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
@@ -113,26 +117,22 @@
                       <Component id="addressField" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="dobDateChooser" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="maleRadioButton" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="femaleRadioButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="salaryField" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="28" pref="28" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="startdateDateChooser" alignment="1" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="salaryField" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
+                      <Component id="startdateDateChooser" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                       <Component id="postComboBox" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="SaveButton" min="-2" pref="40" max="-2" attributes="0"/>
-              <EmptySpace pref="187" max="32767" attributes="0"/>
+              <EmptySpace pref="201" max="32767" attributes="0"/>
           </Group>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
@@ -203,9 +203,6 @@
     </Component>
     <Component class="javax.swing.JLabel" name="pictureLabel">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\msinp\Downloads\HR-Management-System-in-Java-using-swing-framework\src\gamemarkstudio\images\blank-profile-head-hi.png"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="jLabel2"/>
       </Properties>
     </Component>
@@ -223,10 +220,6 @@
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
-    </Component>
-    <Component class="com.toedter.calendar.JDateChooser" name="startdateDateChooser">
-    </Component>
-    <Component class="com.toedter.calendar.JDateChooser" name="dobDateChooser">
     </Component>
     <Component class="javax.swing.JComboBox" name="postComboBox">
       <Properties>
@@ -322,6 +315,10 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Gi&#x1edb;i t&#xed;nh"/>
       </Properties>
+    </Component>
+    <Component class="com.toedter.calendar.JDateChooser" name="dobDateChooser">
+    </Component>
+    <Component class="com.toedter.calendar.JDateChooser" name="startdateDateChooser">
     </Component>
   </SubComponents>
 </Form>
