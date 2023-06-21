@@ -65,16 +65,54 @@ Nhanvien pushData(String data) {
 
 public void tinhToan() {
     try {
+        if(startDateChooser.getDate().before(tempNhanvien.getStartDate())){
+               JOptionPane.showMessageDialog(null, "Ngày bắt đầu  phải nhỏ hơn ngày ngày bắt đầu làm việc!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+              return;
+        }
         double salary = tempNhanvien.getSalary();
 
         LocalDate startDate = startDateChooser.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         LocalDate endDate = endDateChooser.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        advance = Double.valueOf(advanceField.getText());
-        deduction = Double.valueOf(deductionField.getText());
+
+        // Kiểm tra ngày bắt đầu phải lớn hơn ngày kết thúc
+        if (startDate.isAfter(endDate)) {
+            // Hiển thị thông báo lỗi cho người dùng
+            JOptionPane.showMessageDialog(null, "Ngày bắt đầu phải nhỏ hơn ngày kết thúc!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        double advance;
+        double deduction;
+
+        // Kiểm tra dữ liệu thưởng (advance)
+        try {
+            advance = Double.parseDouble(advanceField.getText());
+            if (advance < 0) {
+                // Hiển thị thông báo lỗi cho người dùng
+                JOptionPane.showMessageDialog(null, "Thưởng không được là số âm!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Thưởng phải là dữ liệu số!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Kiểm tra dữ liệu phạt (deduction)
+        try {
+            deduction = Double.parseDouble(deductionField.getText());
+            if (deduction < 0) {
+                // Hiển thị thông báo lỗi cho người dùng
+                JOptionPane.showMessageDialog(null, "Phạt không được là số âm!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Phạt phải là dữ liệu số!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
         // Tính toán số ngày giữa hai ngày
         long daysBetween = ChronoUnit.DAYS.between(startDate, endDate);
-        grosssalary = salary / 30 * daysBetween + advance - deduction;
+        double grosssalary = salary / 30 * daysBetween + advance - deduction;
 
         startDateLabel.setText(startDateChooser.getDate().toString());
         endDateLabel.setText(endDateChooser.getDate().toString());
@@ -86,6 +124,9 @@ public void tinhToan() {
         e.printStackTrace();
     }
 }
+
+
+
 
 
     /**
@@ -200,22 +241,22 @@ public void tinhToan() {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
-                                .addGap(18, 18, 18)
-                                .addComponent(startDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(startDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel5))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(deductionField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(advanceField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(endDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(advanceField)
+                                    .addComponent(deductionField)
+                                    .addComponent(endDateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(58, 58, 58)
                         .addComponent(jButton1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()

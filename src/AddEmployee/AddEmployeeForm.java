@@ -53,45 +53,70 @@ public class AddEmployeeForm extends javax.swing.JPanel {
         load();
         
     }
-    public Department phongBanSet(String pb){
+    public Department phongBanSet(String pb) {
+    try {
         Query query = entityManager.createQuery("SELECT a FROM Department a");
-      List<Department> dpList =  query.getResultList();
-    for(Department dpDepartment : dpList){
-    if(pb.equals(dpDepartment.getName()))
-        return dpDepartment;
-}
-        return null;}
-public Positions vitriSet(String pb){
-        Query query = entityManager.createQuery("SELECT a FROM Positions a");
-      List<Positions> dpList =  query.getResultList();
-    for(Positions dpDepartment : dpList){
-    if(pb.equals(dpDepartment.getName()))
-        return dpDepartment;
-}
-return null;
+        List<Department> dpList =  query.getResultList();
+        for (Department dpDepartment : dpList) {
+            if (pb.equals(dpDepartment.getName())) {
+                return dpDepartment;
+            }
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
     }
-    public void load(){
-       Query query2 = entityManager.createQuery("SELECT MAX(n.id) FROM Nhanvien n");
-Integer maxId = (Integer) query2.getSingleResult()+1;
+    return null;
+}
+
+public Positions vitriSet(String pb) {
+    try {
+        Query query = entityManager.createQuery("SELECT a FROM Positions a");
+        List<Positions> dpList =  query.getResultList();
+        for (Positions dpDepartment : dpList) {
+            if (pb.equals(dpDepartment.getName())) {
+                return dpDepartment;
+            }
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    return null;
+}
+
+public void load() {
+    addressField.setText("");
+    phoneField.setText("");
+    emailField.setText("");
+    nameField.setText("");
+    
+    dobDateChooser.setDate(null);
+    salaryField.setText("");
+    startdateDateChooser.setDate(null);
+    try {
+        Query query2 = entityManager.createQuery("SELECT MAX(n.id) FROM Nhanvien n");
+        Integer maxId = (Integer) query2.getSingleResult() + 1;
 
         IDLabel.setText(String.valueOf(maxId));
         DefaultComboBoxModel<String> postModel = new DefaultComboBoxModel<>();
         Query query = entityManager.createQuery("SELECT p.name FROM Positions p");
         List<String> positions = query.getResultList();
         for (String position : positions) {
-        postModel.addElement(position);
-}
-postComboBox.setModel(postModel);
-DefaultComboBoxModel<String> departModel=new DefaultComboBoxModel<>();
-Query query1=entityManager.createQuery("SELECT d.name FROM Department d");
-List<String> departmentList= query1.getResultList();
-    for (String position : departmentList) {
-        departModel.addElement(position);
-}
-    departmentComboBox1.setModel(departModel);
+            postModel.addElement(position);
+        }
+        postComboBox.setModel(postModel);
+        DefaultComboBoxModel<String> departModel=new DefaultComboBoxModel<>();
+        Query query1=entityManager.createQuery("SELECT d.name FROM Department d");
+        List<String> departmentList= query1.getResultList();
+        for (String position : departmentList) {
+            departModel.addElement(position);
+        }
+        departmentComboBox1.setModel(departModel);
         System.out.println(departmentComboBox1.getSelectedItem().toString());
-       
+    } catch (Exception e) {
+        e.printStackTrace();
     }
+}
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -400,6 +425,26 @@ if(addressField.getText().isEmpty()||phoneField.getText().isEmpty()||emailField.
      JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin", "Lỗi", JOptionPane.ERROR_MESSAGE);
                        return;
 }
+// Kiểm tra ngày sinh phải nhỏ hơn ngày làm việc
+if (dobDateChooser.getDate().after(startdateDateChooser.getDate())) {
+    JOptionPane.showMessageDialog(null, "Ngày sinh phải nhỏ hơn ngày làm việc!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+    return;
+}
+if(!maleRadioButton.isSelected() && !femaleRadioButton.isSelected()){
+    JOptionPane.showMessageDialog(null, "Vui lòng chọn giới tính!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+    return;
+}
+ try {
+        double salary = Double.parseDouble(salaryField.getText());
+        if (salary < 0) {
+            JOptionPane.showMessageDialog(null, "Lương phải là số và lớn hơn hoặc bằng 0", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "Lương phải là số và lớn hơn hoặc bằng 0", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
 // bắt lỗi tên không hợp lệ 
 String str = nameField.getText();
 for (int i = 0; i < str.length(); i++) {
@@ -477,10 +522,20 @@ entityManager.persist(nhanvien);
 // Commit transaction
 entityManager.getTransaction().commit();
 JOptionPane.showMessageDialog(null, "Thao tác thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+addressField.setText("");
+    phoneField.setText("");
+    emailField.setText("");
+    nameField.setText("");
+    
+    dobDateChooser.setDate(null);
+    salaryField.setText("");
+    startdateDateChooser.setDate(null);
+   
 }
 catch(Exception e){
     e.printStackTrace();
 }
+
 // Đóng EntityManager
     }//GEN-LAST:event_SaveButtonActionPerformed
 

@@ -12,6 +12,7 @@ import javax.persistence.Query;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -38,7 +39,7 @@ public class Display extends javax.swing.JPanel {
             setupTableSelectionListener();
         } catch (Exception e) {
             e.printStackTrace();
-            // Xử lý lỗi tại đây
+            
         }
     }
    static public void reset(){
@@ -92,6 +93,7 @@ private void updateTableData(List<Nhanvien> nhanVienList) {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Không thể truy vấn!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
             // Xử lý lỗi tại đây
         }
     }

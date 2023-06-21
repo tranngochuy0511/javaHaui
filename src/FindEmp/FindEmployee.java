@@ -34,7 +34,9 @@ public class FindEmployee extends javax.swing.JPanel {
       
     }
    
-
+public void reset(){
+    searchField.setText("");
+}
 
 
     /**

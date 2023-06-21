@@ -13,6 +13,8 @@ import ConnectionClass.Account;
 import ConnectionClass.ConnectionClass;
 import static ConnectionClass.ConnectionClass.entityManager;
 import java.util.Arrays;
+import java.util.List;
+import javax.persistence.Query;
 import javax.swing.JOptionPane;
 import thegioidochoi.login.LoginHandling;
 
@@ -31,9 +33,21 @@ public class AddAdmin extends javax.swing.JPanel {
 }
 
 public void insert() {
+    
     try {
         Account sAccount = acc();
         if (sAccount != null) {
+            String username = sAccount.getUsername();
+            
+            // Kiểm tra trùng username
+            Query query = entityManager.createQuery("SELECT a FROM Account a WHERE a.username = :username");
+            query.setParameter("username", username);
+            List<Account> existingAccounts = query.getResultList();
+            if (!existingAccounts.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Tên người dùng đã tồn tại. Vui lòng chọn tên người dùng khác.", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            
             entityManager.getTransaction().begin();
             entityManager.persist(acc());
             entityManager.getTransaction().commit();
@@ -48,6 +62,7 @@ public void insert() {
     }
 }
 
+
 Account acc() {
     try {
         Account ac1 = new Account();
@@ -55,6 +70,10 @@ Account acc() {
         if (isEqual(PasswordField.getPassword(), rePasswordField.getPassword())) {
             ac1.setPassword(rePasswordField.getPassword());
             return ac1;
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Mật khẩu không trùng khớp: " , "Thông báo", JOptionPane.ERROR_MESSAGE);
+            return null;
         }
     } catch (Exception e) {
         // Xử lý lỗi khi truy cập dữ liệu nhập vào
@@ -122,10 +141,6 @@ public static boolean isEqual(char[] password1, char[] password2) {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(170, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(165, 165, 165))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -141,8 +156,11 @@ public static boolean isEqual(char[] password1, char[] password2) {
                             .addComponent(rePasswordField)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(199, 199, 199)
-                        .addComponent(confirmButton1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(confirmButton1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1)))
+                .addContainerGap(223, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

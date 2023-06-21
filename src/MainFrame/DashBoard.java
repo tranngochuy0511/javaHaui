@@ -281,6 +281,7 @@ void addPanel(){
         Display.reset();
         hidePanels();
         timKiemEmployee.setVisible(true);
+        timKiemEmployee.reset();
         timKiemEmployee.dpDisplay.displayNhanvienData();
     }//GEN-LAST:event_searchEmployeeButtonActionPerformed
 
@@ -288,12 +289,14 @@ void addPanel(){
    Display.reset();
         hidePanels();
     Display.salaryForm=true;
+    salaryForm.dpDisplay.reset();
     salaryForm.setVisible(true);
 
     }//GEN-LAST:event_salarySlipsButtonActionPerformed
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
     hidePanels();
+    Display.reset();
     Display.reset();
     updateAnDelete.setVisible(true);
     }//GEN-LAST:event_updateButtonActionPerformed

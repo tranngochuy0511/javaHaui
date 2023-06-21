@@ -16,7 +16,7 @@ public class SalaryForm extends javax.swing.JPanel {
     /**
      * Creates new form SalaryForm
      */
-    FindEmployee dpDisplay=null;
+  public  FindEmployee dpDisplay=null;
     public SalaryForm() {
         initComponents();
         dpDisplay = new FindEmployee();
