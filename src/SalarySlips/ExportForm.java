@@ -23,43 +23,70 @@ public class ExportForm extends javax.swing.JFrame {
     /**
      * Creates new form ExportForm
      */
-    double advance;
-    double deduction;
-    double grosssalary;
-    Nhanvien tempNhanvien=null;
-    public ExportForm() {
+   double advance;
+double deduction;
+double grosssalary;
+Nhanvien tempNhanvien = null;
+
+public ExportForm() {
+    try {
         initComponents();
+    } catch (Exception e) {
+        // Xử lý lỗi khi khởi tạo giao diện
+        e.printStackTrace();
     }
-     public ExportForm(String data) {
-         tempNhanvien= pushData(data);
+}
+
+public ExportForm(String data) {
+    try {
+        tempNhanvien = pushData(data);
         initComponents();
         IDLabel.setText(tempNhanvien.getId().toString());
         nameLabel.setText(tempNhanvien.getName());
-        
+    } catch (Exception e) {
+        // Xử lý lỗi khi lấy dữ liệu và cập nhật giao diện
+        e.printStackTrace();
     }
-     Nhanvien pushData(String data){
+}
+
+Nhanvien pushData(String data) {
+    try {
         int number = Integer.valueOf(data);
         Query query = entityManager.createQuery("SELECT n FROM Nhanvien n WHERE n.id= :data");
-        query.setParameter("data",number);
-         Nhanvien nhanVien= (Nhanvien) query.getSingleResult();
-         return nhanVien;
-     }
-     
-     public void tinhToan(){
-         double salary = tempNhanvien.getSalary();
-         
-         LocalDate startDate = startDateChooser.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        query.setParameter("data", number);
+        Nhanvien nhanVien = (Nhanvien) query.getSingleResult();
+        return nhanVien;
+    } catch (Exception e) {
+        // Xử lý lỗi khi truy vấn dữ liệu
+        e.printStackTrace();
+        return null;
+    }
+}
+
+public void tinhToan() {
+    try {
+        double salary = tempNhanvien.getSalary();
+
+        LocalDate startDate = startDateChooser.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         LocalDate endDate = endDateChooser.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
- advance=Double.valueOf(advanceField.getText());
- deduction=Double.valueOf(deductionField.getText());
-// Tính toán số ngày giữa hai ngày
-long daysBetween = ChronoUnit.DAYS.between(startDate, endDate);
-     grosssalary=salary/30*daysBetween+advance-deduction;
-    startDateLabel.setText(startDateChooser.getDate().toString());    endDateLabel.setText(endDateChooser.getDate().toString());
-advanceLabel.setText(advanceField.getText());
-deductionLabel.setText(deductionField.getText());
-grossSalaryLabel.setText(String.valueOf(grosssalary));
-     }
+        advance = Double.valueOf(advanceField.getText());
+        deduction = Double.valueOf(deductionField.getText());
+
+        // Tính toán số ngày giữa hai ngày
+        long daysBetween = ChronoUnit.DAYS.between(startDate, endDate);
+        grosssalary = salary / 30 * daysBetween + advance - deduction;
+
+        startDateLabel.setText(startDateChooser.getDate().toString());
+        endDateLabel.setText(endDateChooser.getDate().toString());
+        advanceLabel.setText(advanceField.getText());
+        deductionLabel.setText(deductionField.getText());
+        grossSalaryLabel.setText(String.valueOf(grosssalary));
+    } catch (Exception e) {
+        // Xử lý lỗi khi tính toán và cập nhật giao diện
+        e.printStackTrace();
+    }
+}
+
 
     /**
      * This method is called from within the constructor to initialize the form.

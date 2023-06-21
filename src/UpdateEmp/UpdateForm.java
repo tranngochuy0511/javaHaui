@@ -21,6 +21,9 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -426,7 +429,63 @@ byte[] imageBytes;
     }//GEN-LAST:event_femaleRadioButtonActionPerformed
 
     private void SaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveButtonActionPerformed
-
+if(addressField.getText().isEmpty()||phoneField.getText().isEmpty()||emailField.getText().isEmpty()|| nameField.getText().isEmpty()|| IDLabel.getText().isEmpty()
+        ||dobDateChooser.getDate()==null||salaryField.getText().isEmpty()||startdateDateChooser.getDate()==null){
+     JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                       return;
+}
+// bắt lỗi tên không hợp lệ 
+String str = nameField.getText();
+for (int i = 0; i < str.length(); i++) {
+    if (!Character.isLetter(str.charAt(i))) {
+        JOptionPane.showMessageDialog(null, "Trong tên không được có số ", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+}
+// bắt lỗi ngày tháng
+SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+dateFormat.setLenient(false);
+try{
+ Date dob =dobDateChooser.getDate();
+ Date std =startdateDateChooser.getDate();
+  dateFormat.parse(dateFormat.format(dob));
+  dateFormat.parse(dateFormat.format(std));
+     // Kiểm tra ngày sinh không được lớn hơn ngày hiện tại
+            Calendar currentDate = Calendar.getInstance();
+            Calendar dobCalendar = Calendar.getInstance();
+            dobCalendar.setTime(dob);
+            Calendar stdCalendar = Calendar.getInstance();
+            stdCalendar.setTime(std);
+            if (dobCalendar.after(currentDate)|| stdCalendar.after(currentDate)) {
+                JOptionPane.showMessageDialog(null, "Ngày sinh hoặc ngày làm việc không được lớn hơn ngày hiện tại", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+          // Kiểm tra start date không được nhỏ hơn ngày sinh và ít nhất là 18 năm sau ngày sinh
+Calendar minDob = Calendar.getInstance();
+minDob.setTime(dob);
+minDob.add(Calendar.YEAR, 18);
+if (stdCalendar.before(minDob)) {
+    JOptionPane.showMessageDialog(null, "Ngày s việc phải lớn hơn hoặc bằng ngày sinh và ít nhất là 18 năm sau ngày sinh", "Lỗi", JOptionPane.ERROR_MESSAGE);
+    return;
+}
+ }
+catch(Exception e){
+ JOptionPane.showMessageDialog(null, "Ngày tháng không hợp lệ. Vui lòng kiểm tra định dạng dd/MM/yyyy");
+}
+// bắt lỗi số điện thoại
+     String sdtString =phoneField.getText();
+     String reg = "^(0|\\+84)(\\s|\\.)?((3[2-9])|(5[689])|(7[06-9])|(8[1-689])|(9[0-46-9]))(\\d)(\\s|\\.)?(\\d{3})(\\s|\\.)?(\\d{3})$";
+     if (!sdtString.matches(reg)) {
+        JOptionPane.showMessageDialog(null,"số điện thoại sai định dạng");
+        return;
+     }
+//bắt lỗi email
+String emailString=emailField.getText();
+String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+if(!emailString.matches(emailRegex)){
+     JOptionPane.showMessageDialog(null,"Email sai định dạng");
+     return;
+}
         // Lấy hình ảnh từ JButton hoặc JLabel
         // Tạo một mảng byte[] để lưu dữ liệu hình ảnh
         try{

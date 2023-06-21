@@ -33,8 +33,13 @@ public class Display extends javax.swing.JPanel {
 
     public Display() {
         initComponents();
-        displayNhanvienData();
-        setupTableSelectionListener();
+        try {
+            displayNhanvienData();
+            setupTableSelectionListener();
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Xử lý lỗi tại đây
+        }
     }
    static public void reset(){
         updateForm=false;
@@ -42,13 +47,17 @@ public class Display extends javax.swing.JPanel {
         salaryForm=false;
     }
   public void displayNhanvienData() {
-        // Tạo model cho JTable
-
- Query query=entityManager.createQuery("SELECT n FROM Nhanvien n");
- List<Nhanvien> nhanVienList = query.getResultList();
-        // Tạo EntityManager
-      updateTableData(nhanVienList);
-        // Đặt model cho JTable
+        try {
+            // Tạo model cho JTable
+            Query query = entityManager.createQuery("SELECT n FROM Nhanvien n");
+            List<Nhanvien> nhanVienList = query.getResultList();
+            // Tạo EntityManager
+            updateTableData(nhanVienList);
+            // Đặt model cho JTable
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Xử lý lỗi tại đây
+        }
     }
   public void searchEmployees(JTextField searchField) {
     String searchKeyword = searchField.getText().trim();
@@ -59,53 +68,68 @@ public class Display extends javax.swing.JPanel {
 }
 
 private void updateTableData(List<Nhanvien> nhanVienList) {
-    DefaultTableModel model = (DefaultTableModel) hienThiTable.getModel();
+        try {
+            DefaultTableModel model = (DefaultTableModel) hienThiTable.getModel();
 
-    model.setRowCount(0); // Xóa toàn bộ dữ liệu hiện tại trên bảng
-    
-    for (Nhanvien nhanVien : nhanVienList) {
-        // Thêm dữ liệu của nhân viên vào bảng
-        model.addRow(new Object[]{
-            nhanVien.getId(),
-            nhanVien.getName(),
-            nhanVien.getDepartmentid().getName(),
-            nhanVien.getPhone(),
-            nhanVien.getEmail(),
-            nhanVien.getAddress(),
-            nhanVien.getDob1(),
-            nhanVien.getGender()?"Nam":"Nữ",
-            nhanVien.getSalary(),
-            nhanVien.getStartDate1(),
-            nhanVien.getPostid().getName()
-            // Các cột khác tương ứng với dữ liệu cần hiển thị
-        });
+            model.setRowCount(0); // Xóa toàn bộ dữ liệu hiện tại trên bảng
+
+            for (Nhanvien nhanVien : nhanVienList) {
+                // Thêm dữ liệu của nhân viên vào bảng
+                model.addRow(new Object[]{
+                    nhanVien.getId(),
+                    nhanVien.getName(),
+                    nhanVien.getDepartmentid().getName(),
+                    nhanVien.getPhone(),
+                    nhanVien.getEmail(),
+                    nhanVien.getAddress(),
+                    nhanVien.getDob1(),
+                    nhanVien.getGender() ? "Nam" : "Nữ",
+                    nhanVien.getSalary(),
+                    nhanVien.getStartDate1(),
+                    nhanVien.getPostid().getName()
+                    // Các cột khác tương ứng với dữ liệu cần hiển thị
+                });
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Xử lý lỗi tại đây
+        }
     }
-}
 public Nhanvien selectedNhanvien=null;
 private void setupTableSelectionListener() {
-    hienThiTable.getSelectionModel().addListSelectionListener((ListSelectionEvent e) -> {
-        if (!e.getValueIsAdjusting()) {
-            int selectedRow = hienThiTable.getSelectedRow();
-            if (selectedRow != -1) {
-                Object selectedValue = hienThiTable.getValueAt(selectedRow, 0);
-                Query query=entityManager.createQuery("SELECT n FROM Nhanvien n WHERE n.id= :id");
-                query.setParameter("id", (int) selectedValue);
-                Nhanvien nvList= (Nhanvien) query.getSingleResult();
-                this.selectedNhanvien=nvList;
-                //System.err.println(selectedNhanvien.getId());
-                openAnotherForm(selectedValue.toString());
+        hienThiTable.getSelectionModel().addListSelectionListener((ListSelectionEvent e) -> {
+            try {
+                if (!e.getValueIsAdjusting()) {
+                    int selectedRow = hienThiTable.getSelectedRow();
+                    if (selectedRow != -1) {
+                        Object selectedValue = hienThiTable.getValueAt(selectedRow, 0);
+                        Query query = entityManager.createQuery("SELECT n FROM Nhanvien n WHERE n.id= :id");
+                        query.setParameter("id", (int) selectedValue);
+                        Nhanvien nvList = (Nhanvien) query.getSingleResult();
+                        this.selectedNhanvien = nvList;
+                        //System.err.println(selectedNhanvien.getId());
+                        openAnotherForm(selectedValue.toString());
+                    }
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                // Xử lý lỗi tại đây
             }
-        }
-    });
-}
+        });
+    }
 
 
 private void openAnotherForm(String data) {
-    if(salaryForm){
-    // Thực hiện xử lý dữ liệu và mở form khác
-    ExportForm form = new ExportForm(data);
-    form.setVisible(true);
-}
+   try {
+            if (salaryForm) {
+                // Thực hiện xử lý dữ liệu và mở form khác
+                ExportForm form = new ExportForm(data);
+                form.setVisible(true);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Xử lý lỗi tại đây
+        }
 }
 
 

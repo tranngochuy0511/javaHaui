@@ -22,41 +22,68 @@ public class AddAdmin extends javax.swing.JPanel {
      * Creates new form AddAdmin
      */
     public AddAdmin() {
+    try {
         initComponents();
+    } catch (Exception e) {
+        // Xử lý lỗi khi khởi tạo giao diện
+        e.printStackTrace();
     }
-    public void insert(){
-        Account sAccount=acc();
-        if(sAccount!=null){
-        entityManager.getTransaction().begin();
-        entityManager.persist(acc());
-        entityManager.getTransaction().commit();
-        // LoginHandling.accounts.add(new thegioidochoi.login.Account(sAccount.getUsername(),Arrays.toString(sAccount.getPassword())));
-        LoginHandling.load();
-        JOptionPane.showMessageDialog(null, "Thao tác thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+}
+
+public void insert() {
+    try {
+        Account sAccount = acc();
+        if (sAccount != null) {
+            entityManager.getTransaction().begin();
+            entityManager.persist(acc());
+            entityManager.getTransaction().commit();
+            LoginHandling.load();
+            JOptionPane.showMessageDialog(null, "Thao tác thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+        }
+    } catch (Exception e) {
+        // Xử lý lỗi khi thực hiện thêm dữ liệu
+        e.printStackTrace();
+        entityManager.getTransaction().rollback();
+        JOptionPane.showMessageDialog(null, "Thao tác thất bại: " + e.getMessage(), "Thông báo", JOptionPane.ERROR_MESSAGE);
     }
-    }
-    Account acc(){
-        Account ac1=new Account();
+}
+
+Account acc() {
+    try {
+        Account ac1 = new Account();
         ac1.setUsername(usernameTextField1.getText());
-        if(isEqual(PasswordField.getPassword(),rePasswordField.getPassword())){
+        if (isEqual(PasswordField.getPassword(), rePasswordField.getPassword())) {
             ac1.setPassword(rePasswordField.getPassword());
             return ac1;
         }
-        return null;
+    } catch (Exception e) {
+        // Xử lý lỗi khi truy cập dữ liệu nhập vào
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(null, "Lỗi: " + e.getMessage(), "Thông báo", JOptionPane.ERROR_MESSAGE);
     }
-          public static boolean isEqual(char[] password1, char[] password2) {
+    return null;
+}
+
+public static boolean isEqual(char[] password1, char[] password2) {
+    try {
         if (password1.length != password2.length) {
             return false;
         }
-        
+
         for (int i = 0; i < password1.length; i++) {
             if (password1[i] != password2[i]) {
                 return false;
             }
         }
-        
         return true;
-    }  
+    } catch (Exception e) {
+        // Xử lý lỗi khi so sánh mật khẩu
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(null, "Lỗi: " + e.getMessage(), "Thông báo", JOptionPane.ERROR_MESSAGE);
+        return false;
+    }
+}
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

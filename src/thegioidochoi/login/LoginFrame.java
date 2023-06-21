@@ -169,7 +169,7 @@ public class LoginFrame extends javax.swing.JFrame {
             System.out.println("Hi");
         }
         else 
-           JOptionPane.showMessageDialog(null, "Invalid Username or Password");
+           JOptionPane.showMessageDialog(null, "Sai tên đăng nhập hoặc mật khẩu");
     
     }
     private void forgotPasswordButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_forgotPasswordButton1ActionPerformed

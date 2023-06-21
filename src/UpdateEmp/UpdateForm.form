@@ -35,27 +35,25 @@
               <EmptySpace pref="210" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                   <Component id="startdateDateChooser" pref="160" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="dobDateChooser" alignment="0" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="emailField" alignment="0" pref="160" max="32767" attributes="0"/>
-                              <Component id="nameField" alignment="0" pref="160" max="32767" attributes="0"/>
-                              <Component id="departmentComboBox1" alignment="0" max="32767" attributes="0"/>
-                              <Component id="phoneField" alignment="0" max="32767" attributes="0"/>
-                              <Component id="addressField" alignment="0" max="32767" attributes="0"/>
-                              <Component id="salaryField" alignment="0" max="32767" attributes="0"/>
-                              <Component id="postComboBox" alignment="0" pref="160" max="32767" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="maleRadioButton" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="femaleRadioButton" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
+                  <Component id="dobDateChooser" alignment="0" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="emailField" alignment="0" pref="160" max="32767" attributes="0"/>
+                          <Component id="nameField" alignment="0" pref="160" max="32767" attributes="0"/>
+                          <Component id="departmentComboBox1" alignment="0" max="32767" attributes="0"/>
+                          <Component id="phoneField" alignment="0" max="32767" attributes="0"/>
+                          <Component id="addressField" alignment="0" max="32767" attributes="0"/>
+                          <Component id="salaryField" alignment="0" max="32767" attributes="0"/>
+                          <Component id="postComboBox" alignment="0" pref="160" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="49" pref="49" max="-2" attributes="0"/>
-                              <Component id="IDLabel" min="-2" max="-2" attributes="0"/>
+                              <Component id="maleRadioButton" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="femaleRadioButton" min="-2" max="-2" attributes="0"/>
                           </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="49" pref="49" max="-2" attributes="0"/>
+                          <Component id="IDLabel" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>

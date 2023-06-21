@@ -314,7 +314,7 @@ addAdmin.setVisible(true);
 hidePanels();
 Display.reset();
 addEmployeeForm.setVisible(true);
-
+addEmployeeForm.load();
     }//GEN-LAST:event_newEmployeeButtonActionPerformed
 
     private void newEmployeeButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newEmployeeButton1ActionPerformed
